@@ -1,0 +1,34 @@
+﻿@model WebApp.Models.ViewModels.Account.SearchViewModel
+@{
+}
+
+<div class="userList-container block-reg background-white">
+    @if (Model.UserList.Count != 0)
+    {
+        @foreach (var user in Model.UserList)
+        {
+            <div class="list-user-container" >
+                <div>
+                    <div class="user-img-container">
+                        <img src="@user.Image"/>
+                    </div>
+                    <div class="user-info-container">
+                        <label>@user.GetFullName()</label>
+                        @if (!user.IsFriendWithCurrent)
+                        {
+                            <form method="post" asp-area="" asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id">
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    Добавить в друзья
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <label> Поиска не дал результатов</label>
+    }
+</div>

@@ -1,0 +1,66 @@
+﻿@model WebApp.Models.ViewModels.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="block-reg-part2">
+<div class="block-reg background-white">
+    <h3 class="center">Продолжение регистрации</h3>
+    <form class="frm" method="post" asp-controller="Register" asp-action="Register">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="LastName" class="form-control" />   
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mrgn center">
+            <input asp-for="Date" class="form-control date_control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+
+            <input asp-for="Month" class="form-control date_control" />
+            <span asp-validation-for="Month" class="text-danger"></span>
+
+            <input asp-for="Year" class="form-control date_control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="EmailReg" class="form-control" />
+                <span asp-validation-for="EmailReg" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="PasswordReg" class="form-control" />
+                <span asp-validation-for="PasswordReg" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="PasswordConfirm" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="center">
+            <input class="btn_submit" type="submit" value="Регистрация" />
+        </div>
+    </form>
+    </div>
+</div>

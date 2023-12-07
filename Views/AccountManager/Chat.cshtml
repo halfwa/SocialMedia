@@ -1,0 +1,55 @@
+﻿@model WebApp.Models.ViewModels.Account.ChatViewModel        
+@{
+    var senderName = $"{Model.You.FirstName} {Model.You.LastName}";
+    var recipientName = $"{Model.ToWhom.FirstName} {Model.ToWhom.LastName}";
+}
+
+<div class="chat-page background-white profile-container">
+
+    <div class="chat-container">
+
+           <h1 style="text-align: center"> Чат</h1>
+           <div class="chat-between-users">
+                <span>@recipientName</span>  <span>@senderName</span>
+           </div>
+           <hr>
+        @if (Model.History.Count != 0)
+        {
+            <div class="messages-board">
+                @foreach (var message in Model.History)
+                {
+                    if (message.Sender.Id == Model.You.Id)
+                    {
+                        <div class="message-container-right">
+                            <label>@senderName</label>
+                            <p>@message.Text</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="message-container-left" >
+                            <label>@recipientName</label>
+                            <p>@message.Text</p>
+                        </div>
+                    }
+                }
+            </div>
+        }
+        else
+        {
+           <div class="chat-hello-start">
+                <span>Напишите сообщение первыми!</span>
+           </div>
+        }
+
+        <div class="chat-input">
+            <form id="chat" method="post" asp-area="" asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id">
+                <div asp-validation-summary="ModelOnly"></div>
+                <input asp-for="NewMessage.Text" type="text" placeholder="Начните писать...">
+                <button type="submit" class="send-image-btn">
+                    <img src="/img/send-image.png" class="send-image">
+                </button>
+             </form>
+        </div>
+    </div>
+</div>

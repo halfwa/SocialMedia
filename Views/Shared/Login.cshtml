@@ -1,0 +1,27 @@
+﻿@model WebApp.Models.ViewModels.Account.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="block-reg background-white">
+    <h4 class="center">Добро пожаловать!</h4>
+    <form class="frm" method="post" asp-controller="AccountManager" asp-action="Login">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <input class="enter_submit" type="submit" value="Войти" />
+        </div>
+    </form>
+</div>

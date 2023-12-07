@@ -1,0 +1,71 @@
+﻿@model WebApp.Models.ViewModels.Account.UserViewModel
+@{
+}
+
+<div class="profile-container">
+
+    <div class="profile-title-container">    
+        <h2>@Model.User.GetFullName()</h2>
+    </div>
+    <br>
+    <div class="profile-edit-img">
+        <form method="get" asp-controller="AccountManager" asp-action="Edit">
+            <button type="submit">
+                <img class="img-edit" src="https://i.imgur.com/DQmM7J5.png">
+            </button>
+        </form>
+    </div>
+    <div class="profile-content-main">
+        <div class="profile-img-container">
+            <img class="img-default" src="@Model.User.Image">
+        </div>
+
+        <div class="profile-info-container">
+            <div class="profile-info">
+                <hr>
+                <div><b>Статус: </b>@Model.User.Status</div>
+                <div><b>О себе: </b>@Model.User.About</div>
+                <div><b>Дата рождения: </b>@Model.User.BirthDate.ToString().Substring(0, 10)</div>
+                <div><b>Email: </b>@Model.User.Email</div>
+            </div>
+            <div class="profile-friends-list-container">
+                <hr>
+                <label><b>Список друзей</b></label>
+                <div class="user-friends">
+
+                    @if (Model.Friends != null && Model.Friends.Count != 0)
+                    {
+                        var friendsCount = Model.Friends.Count;
+                        for (var i = 0; i < friendsCount; i++)
+                        {
+                            <div class="friend">
+                                <div class="user-img-container">
+                                    <img src="@Model.Friends[i].Image" />
+                                </div>
+                                <label>@Model.Friends[i].GetFullName()</label>
+                                <div >
+                                    <form method="post" asp-area="" asp-controller="AccountManager" asp-action="Chat" asp-route-id="@Model.Friends[i].Id">
+                                        <button type="submit" class="btn btn-sm btn-primary" style="width: 100%; margin-bottom: 2%;">
+                                            Сообщение
+                                        </button>
+                                    </form>
+                                    <form method="post" asp-area="" asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@Model.Friends[i].Id">
+                                        <button type="submit" class="btn btn-sm btn-primary" style="width: 100%; margin-bottom: 2%;">
+                                            Удалить из друзей
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="text-align: center">У вас пока нет друзей</div>
+                    }
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+</div>

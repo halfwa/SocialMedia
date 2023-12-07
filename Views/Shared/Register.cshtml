@@ -1,0 +1,79 @@
+﻿@model WebApp.Models.ViewModels.Account.RegisterViewModel
+@using WebApp.Models.ViewModels.Common
+@{
+    ViewData["Title"] = "Register";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="block-reg background-white">
+    <h4 class="center">Впервые с нами?</h4>
+    <div class="center text-color-gray">Регистрация нового пользователя</div>
+    <form class="frm" method="get" asp-controller="Register" asp-action="RegisterPart2">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="center text-color-gray text-size_12">Дата рождения</div>
+        <div class="mrgn center">
+            <select asp-for="Date" class="form-control date_control" ID="ddlDay">
+            </select>
+            <span asp-validation-for="Date" class="text-danger"></span>
+
+            <select asp-for="Month" class="form-control date_control" asp-items="Html.GetEnumSelectList<Months>()" onchange="PopulateDays()" ID="ddlMonth">
+                <option value="">@Model.Month</option>
+            </select>
+            <span asp-validation-for="Month" class="text-danger"></span>
+
+            <select asp-for="Year" class="form-control date_control" ID="ddlYear"
+                    asp-items="Enumerable.Range(DateTime.Now.AddYears(-100).Year, DateTime.Now.AddYears(-14).Year - DateTime.Now.AddYears(-100).Year).Reverse().Select(x=> new SelectListItem(x.ToString(), x.ToString()))"
+                    onchange="PopulateDays()">
+            </select>
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+
+        <div class="center">
+            <input class="btn_submit" type="submit" value="Продолжить регистрацию" />
+        </div>
+    </form>
+
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script type="text/javascript">
+        function PopulateDays() {
+            var ddlMonth = document.getElementById("ddlMonth");
+            var ddlYear = document.getElementById("ddlYear");
+            var ddlDay = document.getElementById("ddlDay");
+
+            var y = ddlYear.options[ddlYear.selectedIndex].value;
+            var m = ddlMonth.options[ddlMonth.selectedIndex].value != 0;
+            if (ddlMonth.options[ddlMonth.selectedIndex].value != 0 && ddlYear.options[ddlYear.selectedIndex].value != 0) {
+                var dayCount = 32 - new Date(ddlYear.options[ddlYear.selectedIndex].value, ddlMonth.options[ddlMonth.selectedIndex].value - 1, 32).getDate();
+                ddlDay.options.length = 0;
+                for (var i = 1; i <= dayCount; i++) {
+                    AddOption(ddlDay, i, i);
+                }
+            }
+        }
+
+        function AddOption(ddl, text, value) {
+            var opt = document.createElement("OPTION");
+            opt.text = text;
+            opt.value = value;
+            ddl.options.add(opt);
+        }
+    </script>
+
+</div>

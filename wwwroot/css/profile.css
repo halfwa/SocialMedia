@@ -1,0 +1,82 @@
+﻿.profile-container {
+    background-color: white;
+    height: 100vh;
+}
+
+.profile-title-container {
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
+
+.profile-content-main {
+    display: flex;
+}
+
+.profile-content-main .profile-img-container,
+.profile-content-main .profile-info-container {
+}
+
+.profile-info-container {
+    width: 100%;
+    padding-right: 2%;
+}
+.profile-info div{
+    padding-left: 2%;
+}
+.profile-friends-list-container div {
+    padding-left: 2%;
+}
+
+.img-default {
+    padding: 5%;
+    width: 500px;
+    height: 500px;
+}
+
+.profile-info {
+}
+
+.profile-friends-list-container {
+}
+
+.profile-edit-img {
+    display: flex;
+    justify-content: right;
+    padding-right: 3%; 
+}
+.profile-edit-img button{
+    border: none;
+    background-color: white;
+}
+
+.img-edit {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.user-img-container img{
+    width: 100%;  
+}
+
+.user-info-conatiner {
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+.friend{
+    width: 25%;
+    margin-top: 3%;
+    text-align:center;
+}
+
+.user-friends {
+    display: flex;
+}
+
+.userList-container .list-user-container {
+    width: 20%;
+
+}
+

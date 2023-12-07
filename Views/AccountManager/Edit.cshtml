@@ -1,0 +1,79 @@
+﻿@model WebApp.Models.ViewModels.Account.UserEditViewModel
+@{
+}
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="block-edit-part2">
+<div class="block-edit background-white">
+    <h3 class="center">Редактирование профиля</h3>
+    <form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="mrgn">
+                    <input asp-for="UserId" class="form-control" value="@Model.UserId" readonly/>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="MiddleName" class="form-control" value="" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mrgn center">
+                <div class="mrgn">
+                    <input asp-for="BirthDate" class="form-control" type="date" placeholder="Дата рождения" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+        </div>
+
+            <div>
+                <div class="mrgn">
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <div class="mrgn">
+                <input asp-for="About" class="form-control" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="center">
+            <input class="btn_submit" type="submit" value="Изменить" />
+        </div>
+    </form>
+    </div>
+</div>
